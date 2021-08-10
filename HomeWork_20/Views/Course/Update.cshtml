@@ -1,0 +1,48 @@
+﻿@model HomeWork_20.Models.Course
+
+@{
+    ViewData["Title"] = "Редактировать";
+}
+
+<h1>Редактировать</h1>
+
+<form method="post" asp-action="Update">
+    <input id="id" asp-for="Id" hidden />
+    <div class="input-field">
+        <label asp-for="CourseName">Название</label>
+        <input id="courseName" asp-for="CourseName" class="validate" required>
+        <span class="helper-text" data-error="Введите название"></span>
+    </div>
+
+    <div class="input-field">
+        <label asp-for="Price">Цена</label>
+        <input id="price" asp-for="Price" class="validate" required min="1">
+        <span class="helper-text" data-error="Введите цену (целое число от 1)"></span>
+    </div>
+
+    <div class="input-field">
+        <label asp-for="Image">URL картинки</label>
+        <input id="image" asp-for="Image" class="validate" required>
+        <span class="helper-text" data-error="Введите url картинки"></span>
+    </div>
+
+    <button id="submit" class="btn btn-primary">Редактировать курс</button>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#submit').click(function (e) {
+                e.preventDefault();
+                var courseName = $('#courseName').val();
+                courseName = encodeURIComponent(courseName);
+                var price = $('#price').val();
+                price = encodeURIComponent(price);
+                var image = $('#image').val();
+                image = encodeURIComponent(image);
+                var id = $('#id').val();
+                id = encodeURIComponent(id);
+                $('#results').load("http://localhost:44301/Course/UpdatePost?courseName=" + courseName + "&price=" + price + "&image=" + image + "&id=" + id);
+            });
+        });
+    </script>
+</form>
+

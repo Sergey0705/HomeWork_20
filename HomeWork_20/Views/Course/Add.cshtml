@@ -1,0 +1,30 @@
+﻿@model HomeWork_20.Models.Course
+
+@{
+    ViewData["Title"] = "Добавить курс";
+}
+
+<h1>Добавить курс</h1>
+
+<form method="post" asp-action="Add">
+    <div class="input-field">
+        <label asp-for="CourseName">Название</label>
+        <input asp-for="CourseName" class="validate" required>
+        <span class="helper-text" data-error="Введите название"></span>
+    </div>
+
+    <div class="input-field">
+        <label asp-for="Price">Цена</label>
+        <input asp-for="Price" class="validate" required min="1">
+        <span class="helper-text" data-error="Введите цену (целое число от 1)"></span>
+    </div>
+
+    <div class="input-field">
+        <label asp-for="Image">URL картинки</label>
+        <input asp-for="Image" class="validate" required>
+        <span class="helper-text" data-error="Введите url картинки"></span>
+    </div>
+
+    <button class="btn btn-primary">Добавить курс</button>
+</form>
+

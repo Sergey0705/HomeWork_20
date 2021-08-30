@@ -28,7 +28,7 @@
 
     <button id="submit" class="btn btn-primary">Редактировать курс</button>
 
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $(document).ready(function () {
             $('#submit').click(function (e) {
                 e.preventDefault();
@@ -40,9 +40,9 @@
                 image = encodeURIComponent(image);
                 var id = $('#id').val();
                 id = encodeURIComponent(id);
-                $('#results').load("http://localhost:44301/Course/UpdatePost?courseName=" + courseName + "&price=" + price + "&image=" + image + "&id=" + id);
+                $('#results').load("http://localhost:44301/Course/Update?courseName=" + courseName + "&price=" + price + "&image=" + image + "&id=" + id);
             });
         });
-    </script>
+    </script>*@
 </form>
 

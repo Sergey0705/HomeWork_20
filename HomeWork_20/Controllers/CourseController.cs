@@ -22,8 +22,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isHome = false;
             ViewBag.isCourses = true;
 
-            IEnumerable<Course> objList = _db.Courses;
-            return View(objList);
+            IEnumerable<Course> coursesList = _db.Courses;
+            return View(coursesList);
         }
 
         // GET Add
@@ -32,55 +32,59 @@ namespace HomeWork_20.Controllers
             ViewBag.isAdd = true;
             ViewBag.isHome = false;
             ViewBag.isCourses = false;
+
             return View();
         }
 
         // POST Add
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add(Course obj)
+        public async Task<IActionResult> Add(Course obj)
         {
             if (ModelState.IsValid)
             {
-                _db.Courses.Add(obj);
-                _db.SaveChanges();
+                await _db.Courses.AddAsync(obj);
+                await _db.SaveChangesAsync();
                 return RedirectToAction("List");
             }
             return View(obj);
         }
 
         // GET Delete
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if(id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var obj = _db.Courses.Find(id);
+            var obj = await _db.Courses.FindAsync(id); ;
 
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Courses.Remove(obj);
-            _db.SaveChanges();
+
+            Task taskRemove = Task.Run(() => _db.Courses.Remove(obj));
+            await taskRemove;
+            await _db.SaveChangesAsync();
             return RedirectToAction("List");
         }
 
         // GET Update
-        public IActionResult Update(int? id)
+        public async Task<IActionResult> Update(int? id)
         {
             ViewBag.isAdd = false;
             ViewBag.isHome = false;
             ViewBag.isCourses = false;
+
 
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var obj = _db.Courses.Find(id);
+            var obj = await _db.Courses.FindAsync(id);
 
             if (obj == null)
             {
@@ -90,22 +94,38 @@ namespace HomeWork_20.Controllers
         }
 
         // POST Update
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Update(string courseName, int price, string image, int id)
+        //{
+        //    ViewBag.isAdd = false;
+        //    ViewBag.isHome = false;
+        //    ViewBag.isCourses = false;
+
+        //    var course = _db.Courses.Where(c => c.Id == id).FirstOrDefault();
+        //    course.CourseName = courseName;
+        //    course.Price = price;
+        //    course.Image = image;
+
+        //    _db.SaveChanges();
+
+        //    return View(course);
+        //}
+
+
+        // POST Update
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(string courseName, int price, string image, int id)
+        public async Task<IActionResult> Update(Course obj)
         {
-            ViewBag.isAdd = false;
-            ViewBag.isHome = false;
-            ViewBag.isCourses = false;
-
-            var course = _db.Courses.Where(c => c.Id == id).FirstOrDefault();
-            course.CourseName = courseName;
-            course.Price = price;
-            course.Image = image;
- 
-            _db.SaveChanges();
-
-            return View(course);
+            if (ModelState.IsValid)
+            {
+                Task taskUpdate = Task.Run(() => _db.Courses.Update(obj));
+                await taskUpdate;
+                await _db.SaveChangesAsync();
+                return RedirectToAction("List");
+            }
+            return View(obj);
         }
     }
 }

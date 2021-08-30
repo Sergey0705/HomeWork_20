@@ -14,16 +14,18 @@ namespace HomeWork_20.Controllers
       
         public IActionResult Index()
         {
-            ViewBag.isAdd = false;
-            ViewBag.isCourses = false;
             ViewBag.isHome = true;
+            ViewBag.isCourses = false;
+            ViewBag.isAdd = false;
+
             return View();
         }
         public IActionResult Courses()
         {
-            ViewBag.isAdd = false;
             ViewBag.isHome = false;
             ViewBag.isCourses = true;
+            ViewBag.isAdd = false;
+
             return View();
         }
         public IActionResult Add()
@@ -31,6 +33,7 @@ namespace HomeWork_20.Controllers
             ViewBag.isHome = false;
             ViewBag.isCourses = false;
             ViewBag.isAdd = true;
+
             return View();
         }
     }

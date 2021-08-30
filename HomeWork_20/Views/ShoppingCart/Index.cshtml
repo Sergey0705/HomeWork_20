@@ -1,0 +1,31 @@
+﻿@model ShoppingCartViewModel
+
+<h1>Корзина</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Курс</th>
+            <th>Количество</th>
+            <th class="text-right">Цена</th>
+            <th class="text-right">Сумма</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cartItem in Model.ShoppingCart.ShoppingCartItems)
+        {
+        <tr>
+            <td class="text-center">@cartItem.Course.CourseName</td>
+            <td class="text-left">@cartItem.Amount</td>
+            <td class="text-right">@cartItem.Course.Price.ToString("C")</td>
+            <td class="text-right">@((cartItem.Amount * cartItem.Course.Price).ToString("C"))</td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Общая сумма:</td>
+            <td class="text-right">@Model.ShoppingCartTotal.ToString("C")</td>
+        </tr>
+    </tfoot>
+</table>

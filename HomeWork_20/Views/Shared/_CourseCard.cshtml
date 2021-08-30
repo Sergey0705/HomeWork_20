@@ -1,0 +1,20 @@
+﻿@model Course
+
+<div class="row">
+    <div class="col s6 offset-s3">
+        <div class="card">
+            <div class="card-image">
+                <img src=@Model.Image alt=@Model.CourseName>
+            </div>
+            <div class="card-content">
+                <span class="card-title">@Model.CourseName</span>
+                <p class="price">@Model.Price.ToString("C")</p>
+            </div>
+            <div class="card-action">
+                <a asp-controller="Course" asp-action="Update" asp-route-Id="@Model.Id" class="btn btn-primary mx-1">Редактировать</a>
+                <a asp-controller="Course" asp-action="Delete" asp-route-Id="@Model.Id" class="btn btn-dark mx-1">Удалить</a>
+                <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-Id="@Model.Id" class="btn btn-primary mx-1">В корзину</a>
+            </div>
+        </div>
+    </div>
+</div>

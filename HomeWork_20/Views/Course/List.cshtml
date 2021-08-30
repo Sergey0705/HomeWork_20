@@ -10,23 +10,7 @@
 {
     @foreach (var course in Model)
     {
-        <div class="row">
-            <div class="col s6 offset-s3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src=@course.Image alt=@course.CourseName>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">@course.CourseName</span>
-                        <p class="price">@course.Price.ToString("C")</p>
-                    </div>
-                    <div class="card-action">
-                        <a asp-controller="Course" asp-action="Update" asp-route-Id="@course.Id" class="btn btn-primary mx-1">Редактировать</a>
-                        <a asp-controller="Course" asp-action="Delete" asp-route-Id="@course.Id" class="btn btn-danger mx-1">Удалить</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <partial name="_CourseCard" model="course" />
     }
 }
 else

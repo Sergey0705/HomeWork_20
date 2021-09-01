@@ -91,7 +91,7 @@ namespace HomeWork_20.Models
                              .ToList());
         }
 
-        public async void ClearCart()
+        public void ClearCart()
         {
             var carItems = _applicationDbContext
                 .ShoppingCartItems
@@ -99,7 +99,7 @@ namespace HomeWork_20.Models
 
             _applicationDbContext.ShoppingCartItems.RemoveRange(carItems);
 
-            await _applicationDbContext.SaveChangesAsync();
+            _applicationDbContext.SaveChanges();
         }
 
         public decimal GetShoppingCartTotal()

@@ -1,5 +1,10 @@
 ﻿@model ShoppingCartViewModel
 
+@{
+    ViewData["Title"] = "Корзина";
+
+}
+
 <h1>Корзина</h1>
 
 <table class="table table-bordered table-striped">
@@ -14,12 +19,12 @@
     <tbody>
         @foreach (var cartItem in Model.ShoppingCart.ShoppingCartItems)
         {
-        <tr>
-            <td class="text-center">@cartItem.Course.CourseName</td>
-            <td class="text-left">@cartItem.Amount</td>
-            <td class="text-right">@cartItem.Course.Price.ToString("C")</td>
-            <td class="text-right">@((cartItem.Amount * cartItem.Course.Price).ToString("C"))</td>
-        </tr>
+            <tr>
+                <td class="text-center">@cartItem.Course.CourseName</td>
+                <td class="text-left">@cartItem.Amount</td>
+                <td class="text-right">@cartItem.Course.Price.ToString("C")</td>
+                <td class="text-right">@((cartItem.Amount * cartItem.Course.Price).ToString("C"))</td>
+            </tr>
         }
     </tbody>
     <tfoot>
@@ -31,5 +36,9 @@
 </table>
 
 <div class="text-center">
-    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Оформить заказ</a>
+    <a  asp-controller="Order" asp-action="Checkout" class="btn btn-primary mx-1">Оформить заказ</a>
+    <a asp-controller="Order" asp-action="DeleteCart" class="btn btn-primary mx-1">Очистить корзину</a>
 </div>
+
+
+

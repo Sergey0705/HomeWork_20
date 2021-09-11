@@ -17,6 +17,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isHome = true;
             ViewBag.isCourses = false;
             ViewBag.isAdd = false;
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
 
             return View();
         }
@@ -25,6 +27,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isHome = false;
             ViewBag.isCourses = true;
             ViewBag.isAdd = false;
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
 
             return View();
         }
@@ -33,6 +37,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isHome = false;
             ViewBag.isCourses = false;
             ViewBag.isAdd = true;
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
 
             return View();
         }

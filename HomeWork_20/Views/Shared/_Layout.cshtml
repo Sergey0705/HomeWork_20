@@ -33,16 +33,49 @@
                     <li><a asp-controller="Course" asp-action="List">Курсы</a></li>
                 }
 
-                @if (ViewBag.isAdd)
+                @if (ViewBag.isAdd && @User.Identity.Name == "Admin" && User.Identity.IsAuthenticated)
                 {
                     <li class="active"><a asp-controller="Course" asp-action="Add">Добавить курс</a></li>
                 }
-                else
+                else if (@User.Identity.Name == "Admin" && User.Identity.IsAuthenticated)
                 {
                     <li><a asp-controller="Course" asp-action="Add">Добавить курс</a></li>
                 }
 
                 @await Component.InvokeAsync("ShoppingCartSummary")
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="linav">
+                        @User.Identity.Name
+                    </li>
+
+                    <li>
+                        <form method="post" asp-controller="Account" asp-action="Logout" id="logoutform" asp-antiforgery="true">
+                            <a href="#" onclick="document.getElementById('logoutform').submit()">Выход</a>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    @if (ViewBag.isLogin)
+                    {
+                        <li class="active"><a asp-controller="Account" asp-action="Login">Вход</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Account" asp-action="Login">Вход</a></li>
+                    }
+
+                    @if (ViewBag.isRegister)
+                    {
+                        <li class="active"><a asp-controller="Account" asp-action="Register">Регистрация</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Account" asp-action="Register">Регистрация</a></li>
+                    }
+                }
             </ul>
         </div>
     </nav>

@@ -11,9 +11,21 @@
                 <p class="price">@Model.Price.ToString("C")</p>
             </div>
             <div class="card-action">
-                <a asp-controller="Course" asp-action="Update" asp-route-Id="@Model.Id" class="btn btn-primary mx-1">Редактировать</a>
-                <a asp-controller="Course" asp-action="Delete" asp-route-Id="@Model.Id" class="btn btn-dark mx-1">Удалить</a>
-                <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-Id="@Model.Id" class="btn btn-primary mx-1">В корзину</a>
+                @if (@User.Identity.Name == "Admin" && User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Course" asp-action="Update" asp-route-Id="@Model.Id" class="btn btn-primary mx-1">Редактировать</a>
+                    <a asp-controller="Course" asp-action="Delete" asp-route-Id="@Model.Id" class="btn btn-dark mx-1">Удалить</a>
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-Id="@Model.Id" class="btn btn-primary mx-1">В корзину</a>
+                }
+                else
+                {
+                    <a a asp-controller="Account" asp-action="Login" class="btn btn-primary mx-1">В корзину</a>
+                }
+
             </div>
         </div>
     </div>

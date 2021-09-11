@@ -1,5 +1,10 @@
 ﻿@model Order
 
+@{
+    ViewData["Title"] = "Заказ";
+
+}
+
 <form asp-action="Checkout" method="post" class="form-horizontal" role="form">
 
     <div asp-validation-summary="All" class="text-danger"></div>

@@ -23,6 +23,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isHome = false;
             ViewBag.isAdd = false;
             ViewBag.isCourses = false;
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
 
             return View();
         }
@@ -32,6 +34,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isHome = false;
             ViewBag.isAdd = false;
             ViewBag.isCourses = false;
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
 
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
@@ -56,9 +60,17 @@ namespace HomeWork_20.Controllers
             ViewBag.isHome = false;
             ViewBag.isAdd = false;
             ViewBag.isCourses = false;
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
             ViewBag.CheckoutCompleteMessage = "Спасибо за заказ";
 
             return View();
+        }
+
+        public IActionResult DeleteCart()
+        {
+            _shoppingCart.ClearCart();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -3,7 +3,7 @@
 @if(Model.ShoppingCart.ShoppingCartItems.Count > 0)
 {
     <li>
-        <a>
+        <a asp-controller="Order" asp-action="Checkout">
             <i class="medium material-icons">shopping_cart</i>
         </a>
     </li>

@@ -1,5 +1,6 @@
 ﻿using HomeWork_20.Data;
 using HomeWork_20.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isAdd = false;
             ViewBag.isHome = false;
             ViewBag.isCourses = true;
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
 
             IEnumerable<Course> coursesList = _db.Courses;
             return View(coursesList);
@@ -32,6 +35,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isAdd = true;
             ViewBag.isHome = false;
             ViewBag.isCourses = false;
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
 
             return View();
         }
@@ -77,7 +82,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isAdd = false;
             ViewBag.isHome = false;
             ViewBag.isCourses = false;
-
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
 
             if (id == null || id == 0)
             {

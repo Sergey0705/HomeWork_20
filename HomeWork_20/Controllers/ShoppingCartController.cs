@@ -23,6 +23,8 @@ namespace HomeWork_20.Controllers
             ViewBag.isAdd = false;
             ViewBag.isHome = false;
             ViewBag.isCourses = false;
+            ViewBag.isLogin = false;
+            ViewBag.isRegister = false;
 
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
